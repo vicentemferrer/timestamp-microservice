@@ -1,32 +1,21 @@
-// index.js
-// where your node app starts
+import express from 'express'
+import cors from 'cors'
 
-// init project
-var express = require('express');
-var app = express();
+import { buildHome } from './controllers/mainController.js'
+import staticRoute from './routes/static.js'
+import apiRoute from './routes/apiRoute.js'
 
-// enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
-// so that your API is remotely testable by FCC 
-var cors = require('cors');
-app.use(cors({optionsSuccessStatus: 200}));  // some legacy browsers choke on 204
+const app = express()
 
-// http://expressjs.com/en/starter/static-files.html
-app.use(express.static('public'));
+const { PORT, HOST } = process.env
 
-// http://expressjs.com/en/starter/basic-routing.html
-app.get("/", function (req, res) {
-  res.sendFile(__dirname + '/views/index.html');
-});
+app.use(cors({ optionsSuccessStatus: 200 }))
 
+app.use(staticRoute)
 
-// your first API endpoint... 
-app.get("/api/hello", function (req, res) {
-  res.json({greeting: 'hello API'});
-});
+app.get("/", buildHome)
+app.use("/api", apiRoute)
 
-
-
-// Listen on port set in environment variable or default to 3000
-var listener = app.listen(process.env.PORT || 3000, function () {
-  console.log('Your app is listening on port ' + listener.address().port);
+app.listen(PORT || 4321, () => {
+	console.log(`Your app is listening on http://${HOST}:${PORT}`)
 });
