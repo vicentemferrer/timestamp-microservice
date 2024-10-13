@@ -1,7 +1,7 @@
 {
   "type": "module",
-  "name": "timestamp-api",
-  "version": "1.0.0",
+  "name": "timestamp-microservice",
+  "version": "1.2.0",
   "description": "An FCC Backend Challenge",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/vicentemferrer/fcc-timestamp-api.git"
+    "url": "https://github.com/vicentemferrer/timestamp-microservice.git"
   },
   "homepage": "https://timestamp-microservice-htso.onrender.com/",
   "author": "Vicente Ferrer",
